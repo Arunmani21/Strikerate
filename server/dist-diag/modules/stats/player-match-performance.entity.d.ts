@@ -1,0 +1,35 @@
+import { Player } from '../player/player.entity';
+import { Match } from '../match/match.entity';
+import { Team } from '../team/team.entity';
+export declare class PlayerMatchPerformance {
+    id: string;
+    runsScored: number;
+    ballsFaced: number;
+    fours: number;
+    sixes: number;
+    strikeRate: number;
+    isOut: boolean;
+    wicketType: string;
+    battingPosition: number;
+    isRetiredHurt: boolean;
+    retiredHurtAt: Date;
+    retiredHurtBallNumber: number;
+    returnedFromRetirement: boolean;
+    returnedAtBall: number;
+    oversBowled: number;
+    runsConceded: number;
+    wicketsTaken: number;
+    economy: number;
+    maidens: number;
+    wides: number;
+    noBalls: number;
+    matchRating: number;
+    isPlayerOfMatch: boolean;
+    playerId: string;
+    player: Player;
+    matchId: string;
+    match: Match;
+    teamId: string;
+    team: Team;
+    createdAt: Date;
+}

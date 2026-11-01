@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Strikerate</string>
+    <string name="title_activity_main">Strikerate</string>
+    <string name="package_name">com.strikerate.app</string>
+    <string name="custom_url_scheme">com.strikerate.app</string>
+</resources>

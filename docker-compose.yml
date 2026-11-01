@@ -1,0 +1,61 @@
+# Strikerate local test bed: Postgres + API + web client.
+# Usage:  docker compose up -d --build
+# Web:    http://localhost:8080
+# API:    http://localhost:3001  (docs at /api-docs, health at /health)
+# API maps to host 3001 so it can run alongside the dev server on 3000.
+# Values match server/.env dev defaults; override via a root .env file.
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: strikerate_db
+    environment:
+      POSTGRES_DB: ${DB_NAME:-strikerate_db}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-Arunme211}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres} -d ${DB_NAME:-strikerate_db}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build: ./server
+    container_name: strikerate_api
+    environment:
+      PORT: 3000
+      JWT_SECRET: ${JWT_SECRET:-strikerate_secret_key_change_in_production}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-24h}
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME:-strikerate_db}
+      DB_USER: ${DB_USER:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:-Arunme211}
+      FRONTEND_URL: http://localhost:8080
+      # Google sign-in stays disabled (routes return 503) until these are set
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+      GOOGLE_CALLBACK_URL: ${GOOGLE_CALLBACK_URL:-}
+    ports:
+      - "3001:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  web:
+    build:
+      context: ./client
+      args:
+        VITE_API_URL: http://localhost:3001
+    container_name: strikerate_web
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+
+volumes:
+  postgres_data:

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #0099CC 0%, #00D4FF 100%);
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+        }
+        .header h1 {
+            color: white;
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        .cricket-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        .content {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .greeting {
+            font-size: 18px;
+            color: #0099CC;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .otp-box {
+            background: linear-gradient(135deg, #E6F7FF 0%, #B3E5FC 100%);
+            border: 2px dashed #0099CC;
+            padding: 30px;
+            text-align: center;
+            margin: 30px 0;
+            border-radius: 10px;
+        }
+        .otp-label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #555;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .otp-code {
+            font-size: 36px;
+            font-weight: bold;
+            color: #0099CC;
+            letter-spacing: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+        }
+        .expiry {
+            font-size: 13px;
+            color: #777;
+            margin: 10px 0 0 0;
+        }
+        .info-box {
+            background: #E3F2FD;
+            border-left: 4px solid #0099CC;
+            padding: 15px 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .info-box strong {
+            color: #006680;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 13px;
+            padding: 20px;
+        }
+        .footer-links {
+            margin: 15px 0;
+        }
+        .footer-links a {
+            color: #0099CC;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        @media only screen and (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            .header, .content {
+                padding: 20px;
+            }
+            .otp-code {
+                font-size: 28px;
+                letter-spacing: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="cricket-icon">🏏</div>
+            <h1>Cricket Scoring App</h1>
+        </div>
+        <div class="content">
+            <p class="greeting">Hi {{userName}},</p>
+
+            <p>Thank you for registering with Cricket Scoring App! To complete your registration and secure your account, please verify your email address using the OTP below:</p>
+
+            <div class="otp-box">
+                <p class="otp-label">Your Verification Code</p>
+                <div class="otp-code">{{otp}}</div>
+                <p class="expiry">✓ Valid for 10 minutes</p>
+            </div>
+
+            <div class="info-box">
+                <strong>🔒 Security Notice:</strong> Never share this OTP with anyone. Our team will never ask for your OTP via email, phone, or chat. This code is unique to your verification request.
+            </div>
+
+            <p style="font-size: 14px; color: #666; margin-top: 25px;">
+                If you didn't request this verification, please ignore this email. Your account remains secure.
+            </p>
+
+            <p style="margin: 30px 0 0 0; color: #555;">
+                Best regards,<br>
+                <strong style="color: #0099CC;">The Cricket Scoring App Team</strong>
+            </p>
+        </div>
+        <div class="footer">
+            <p style="margin: 0;">© {{year}} Cricket Scoring App. All rights reserved.</p>
+            <p style="margin: 5px 0 0 0; font-size: 11px; color: #999;">
+                This is an automated email. Please do not reply.
+            </p>
+            <div class="footer-links">
+                <a href="{{clientUrl}}/terms">Terms</a>
+                <a href="{{clientUrl}}/privacy">Privacy</a>
+                <a href="{{clientUrl}}/support">Support</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

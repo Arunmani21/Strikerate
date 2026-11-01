@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+@theme {
+  /* Surfaces */
+  --color-bg: #070b14;
+  --color-surface: #0e1526;
+  --color-elevated: #16203a;
+  --color-line: #1d2a47;
+  --color-line-soft: #141d33;
+
+  /* Text */
+  --color-text: #f2f6ff;
+  --color-text-dim: #93a1bd;
+  --color-text-faint: #5b6b8c;
+
+  /* Accent — electric green */
+  --color-accent: #00ff87;
+  --color-accent-strong: #00c96e;
+  --color-accent-soft: rgba(0, 255, 135, 0.12);
+  --color-on-accent: #04120a;
+
+  /* Semantic */
+  --color-wicket: #ff4d5e;
+  --color-wicket-soft: rgba(255, 77, 94, 0.14);
+  --color-gold: #ffc53d;
+  --color-gold-soft: rgba(255, 197, 61, 0.14);
+  --color-warn: #f5a524;
+  --color-warn-soft: rgba(245, 165, 36, 0.14);
+  --color-info: #4cc2ff;
+  --color-info-soft: rgba(76, 194, 255, 0.12);
+  --color-dot: #33415e;
+
+  /* Type */
+  --font-display: "Rajdhani", "Inter Variable", ui-sans-serif, system-ui,
+    sans-serif;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-bg font-sans text-text antialiased;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    overscroll-behavior-y: none;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    font: inherit;
+  }
+}
+
+@utility tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+@utility pt-safe {
+  padding-top: max(env(safe-area-inset-top), 0px);
+}
+
+@utility pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom), 0px);
+}
+
+/* Hide scrollbars on horizontal ball strips while keeping them scrollable */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

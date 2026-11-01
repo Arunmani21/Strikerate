@@ -1,0 +1,33 @@
+import { TeamMember } from './team-member.entity';
+import { Player } from '../player/player.entity';
+import { TeamAvailability } from '../match/team-availability.entity';
+import { Match } from '../match/match.entity';
+import { MatchRequest } from '../match/match-request.entity';
+import { Playing11 } from '../playing11/playing11.entity';
+import { PlayerMatchPerformance } from '../stats/player-match-performance.entity';
+import { TeamMatchHistory } from '../stats/team-match-history.entity';
+import { SuperOver } from '../match/super-over.entity';
+export declare class Team {
+    id: string;
+    name: string;
+    homeGround: string;
+    logoUrl: string;
+    description: string;
+    captainId: string;
+    createdBy: string;
+    createdAt: Date;
+    updatedAt: Date;
+    deletedAt: Date;
+    members: TeamMember[];
+    players: Player[];
+    availabilities: TeamAvailability[];
+    homeMatches: Match[];
+    awayMatches: Match[];
+    sentRequests: MatchRequest[];
+    receivedRequests: MatchRequest[];
+    playing11: Playing11[];
+    performances: PlayerMatchPerformance[];
+    matchHistory: TeamMatchHistory[];
+    superOversAsTeamA: SuperOver[];
+    superOversAsTeamB: SuperOver[];
+}

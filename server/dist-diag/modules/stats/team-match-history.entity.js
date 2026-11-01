@@ -1,0 +1,87 @@
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TeamMatchHistory = void 0;
+const typeorm_1 = require("typeorm");
+const team_entity_1 = require("../team/team.entity");
+const match_entity_1 = require("../match/match.entity");
+let TeamMatchHistory = class TeamMatchHistory {
+};
+exports.TeamMatchHistory = TeamMatchHistory;
+__decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
+    __metadata("design:type", String)
+], TeamMatchHistory.prototype, "id", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", String)
+], TeamMatchHistory.prototype, "result", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'runs_scored', default: 0 }),
+    __metadata("design:type", Number)
+], TeamMatchHistory.prototype, "runsScored", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'wickets_lost', default: 0 }),
+    __metadata("design:type", Number)
+], TeamMatchHistory.prototype, "wicketsLost", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'overs_played', type: 'decimal', precision: 5, scale: 2, default: 0 }),
+    __metadata("design:type", Number)
+], TeamMatchHistory.prototype, "oversPlayed", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'runs_conceded', default: 0 }),
+    __metadata("design:type", Number)
+], TeamMatchHistory.prototype, "runsConceded", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'wickets_taken', default: 0 }),
+    __metadata("design:type", Number)
+], TeamMatchHistory.prototype, "wicketsTaken", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'date' }),
+    __metadata("design:type", Date)
+], TeamMatchHistory.prototype, "matchDate", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'team_id', nullable: false }),
+    __metadata("design:type", String)
+], TeamMatchHistory.prototype, "teamId", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => team_entity_1.Team, (team) => team.matchHistory, {
+        onDelete: 'CASCADE',
+    }),
+    (0, typeorm_1.JoinColumn)({ name: 'team_id' }),
+    __metadata("design:type", team_entity_1.Team)
+], TeamMatchHistory.prototype, "team", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'match_id', nullable: false }),
+    __metadata("design:type", String)
+], TeamMatchHistory.prototype, "matchId", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => match_entity_1.Match, (match) => match.teamHistory, {
+        onDelete: 'CASCADE',
+    }),
+    (0, typeorm_1.JoinColumn)({ name: 'match_id' }),
+    __metadata("design:type", match_entity_1.Match)
+], TeamMatchHistory.prototype, "match", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'opponent_id', nullable: false }),
+    __metadata("design:type", String)
+], TeamMatchHistory.prototype, "opponentId", void 0);
+__decorate([
+    (0, typeorm_1.CreateDateColumn)({ name: 'created_at' }),
+    __metadata("design:type", Date)
+], TeamMatchHistory.prototype, "createdAt", void 0);
+exports.TeamMatchHistory = TeamMatchHistory = __decorate([
+    (0, typeorm_1.Entity)('team_match_history'),
+    (0, typeorm_1.Index)(['teamId']),
+    (0, typeorm_1.Index)(['matchId']),
+    (0, typeorm_1.Index)(['matchDate'])
+], TeamMatchHistory);
+//# sourceMappingURL=team-match-history.entity.js.map
